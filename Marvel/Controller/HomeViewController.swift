@@ -9,10 +9,9 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class HomeViewController: UIViewController {
+class HomeViewController: UITableViewController {
 
     private var searchController = UISearchController(searchResultsController: nil)
-    @IBOutlet weak var tableView: UITableView!
     
     private var character: Character?
     private var filterCharacters = [Result]()
@@ -51,14 +50,24 @@ class HomeViewController: UIViewController {
         tableView.registerNib(for: CharacterCell.self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationViewController = segue.destination as? FullScreenViewController,
-           let indexPath = sender as? IndexPath {
-//            destinationViewController.result = comics?.data.results[indexPath.row]
+    func showDetailsViewController(indexPath: IndexPath) {
+        var result: Result?
+        
+        if isFiltering() {
+            result = filterCharacters[indexPath.row]
+        } else {
+            result = character?.data.results[indexPath.row]
         }
+        
+        let detailsViewController = DetailsViewController()
+        detailsViewController.result = result
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
+    
+}
 
-    // MARK: - Private instance methods
+// MARK: - Search Bar methods
+extension HomeViewController {
     
     private func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -79,27 +88,42 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filterCharacters.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.reuseIdentifier, for: indexPath) as! CharacterCell
-        cell.model = filterCharacters[indexPath.row]
-        return cell
-//        return tableView.reusableCell(for: indexPath.row, with: filterCharacters[indexPath.row]) as CharacterCell
-    }
-    
-}
-
 extension HomeViewController: UISearchResultsUpdating {
-
+    
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
             filterContentForSearchText(text)
         }
     }
+    
+}
 
+// MARK: TableViewDelegate & TableViewDataSource
+extension HomeViewController {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filterCharacters.count
+        }
+        
+        return character?.data.results.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.reuseIdentifier, for: indexPath) as! CharacterCell
+        
+        if isFiltering() {
+            cell.model = filterCharacters[indexPath.row]
+        } else {
+            cell.model = character?.data.results[indexPath.row]
+        }
+        
+        return cell
+//        return tableView.reusableCell(for: indexPath.row, with: filterCharacters[indexPath.row]) as CharacterCell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showDetailsViewController(indexPath: indexPath)
+    }
+    
 }
