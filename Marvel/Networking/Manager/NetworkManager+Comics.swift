@@ -13,7 +13,7 @@ extension NetworkManager {
     typealias APIErrorCallback = () -> ()
     
     func getCharacters(page: Int, onSuccess: @escaping APISuccessCallback<Character>, onError: @escaping APIErrorCallback) {
-        router.request(.characters) { data, response, error in
+        router.request(.characters, page: page) { data, response, error in
             
             if error != nil {
                 onError()

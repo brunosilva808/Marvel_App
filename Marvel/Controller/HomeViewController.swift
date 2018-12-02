@@ -15,23 +15,14 @@ class HomeViewController: UITableViewController {
     
     private var character: Character?
     private var filterCharacters = [Result]()
+    private var page = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSearchController()
         setupTableView()
-        
-        NetworkManager().getCharacters(page: 0, onSuccess: { [weak self] (response) in
-            self?.character = response
-            self?.filterCharacters = response.data.results
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-        }) {
-            
-        }
+        getCharacters()
     }
     
     func setupSearchController() {
@@ -62,6 +53,20 @@ class HomeViewController: UITableViewController {
         let detailsViewController = DetailsViewController()
         detailsViewController.result = result
         self.navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+    
+    func getCharacters() {
+        NetworkManager().getCharacters(page: page, onSuccess: { [weak self] (response) in
+            self?.character = response
+            self?.filterCharacters = response.data.results
+            self?.page += 1
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }) {
+            
+        }
     }
     
 }
@@ -124,6 +129,12 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         showDetailsViewController(indexPath: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == indexPath.row - 2 {
+            getCharacters()
+        }
     }
     
 }

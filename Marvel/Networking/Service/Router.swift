@@ -25,10 +25,10 @@ class Router<Endpoint: EndpointType>: NetworkRouter {
         return "\(digest.utf8.md5)"
     }
     
-    func request(_ route: Endpoint, completion: @escaping NetworkRouterCompletion) {
+    func request(_ route: Endpoint, page: Int, completion: @escaping NetworkRouterCompletion) {
         let session = URLSession.shared
         do {
-            let request = try self.buildRequest(from: route)
+            let request = try self.buildRequest(from: route, page: page)
             task = session.dataTask(with: request, completionHandler: { (data, response, error) in
                 completion(data, response, error)
             })
@@ -42,7 +42,7 @@ class Router<Endpoint: EndpointType>: NetworkRouter {
         self.task?.cancel()
     }
     
-    fileprivate func buildRequest(from route: Endpoint) throws -> URLRequest {
+    fileprivate func buildRequest(from route: Endpoint, page: Int) throws -> URLRequest {
         
         var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path),
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
@@ -72,7 +72,7 @@ class Router<Endpoint: EndpointType>: NetworkRouter {
                                              request: &request)
             }
             
-            self.addURLQueryItems(request: &request)
+            self.addURLQueryItems(request: &request, page: page)
             
             return request
         } catch {
@@ -80,10 +80,13 @@ class Router<Endpoint: EndpointType>: NetworkRouter {
         }
     }
     
-    fileprivate func addURLQueryItems(request: inout URLRequest) {
+    fileprivate func addURLQueryItems(request: inout URLRequest, page: Int) {
         let queryItems = [URLQueryItem(name: APIConstant.Parameter.timeStamp, value: APIConstant.Value.timeStamp),
                           URLQueryItem(name: APIConstant.Parameter.apiKey, value: APIConstant.Value.publicKey),
-                          URLQueryItem(name: APIConstant.Parameter.hash, value: md5Digest)]
+                          URLQueryItem(name: APIConstant.Parameter.hash, value: md5Digest),
+                          URLQueryItem(name: APIConstant.Parameter.limit, value: "\(APIConstant.Value.limit)"),
+                          URLQueryItem(name: APIConstant.Parameter.offset, value: "\(APIConstant.Value.limit * page)")]
+
         if let urlString = request.url?.absoluteString {
             var urlComps = URLComponents(string: urlString)
             urlComps?.queryItems = queryItems
