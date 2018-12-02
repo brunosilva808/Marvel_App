@@ -13,7 +13,7 @@ class HomeViewController: UITableViewController {
 
     private var searchController = UISearchController(searchResultsController: nil)
     
-    private var character: Character?
+    private var characters = [Result]()
     private var filterCharacters = [Result]()
     private var page = 0
     
@@ -47,7 +47,7 @@ class HomeViewController: UITableViewController {
         if isFiltering() {
             result = filterCharacters[indexPath.row]
         } else {
-            result = character?.data.results[indexPath.row]
+            result = characters[indexPath.row]
         }
         
         let detailsViewController = DetailsViewController()
@@ -57,7 +57,7 @@ class HomeViewController: UITableViewController {
     
     func getCharacters() {
         NetworkManager().getCharacters(page: page, onSuccess: { [weak self] (response) in
-            self?.character = response
+            self?.characters.append(contentsOf: response.data.results)
             self?.filterCharacters = response.data.results
             self?.page += 1
             
@@ -79,13 +79,11 @@ extension HomeViewController {
     }
     
     private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        if let results = character?.data.results {
-            filterCharacters = results.filter({( result : Result) -> Bool in
-                return result.name.lowercased().contains(searchText.lowercased())
-            })
-            
-            tableView.reloadData()
-        }
+        filterCharacters = characters.filter({( result : Result) -> Bool in
+            return result.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
     }
     
     private func isFiltering() -> Bool {
@@ -111,7 +109,7 @@ extension HomeViewController {
             return filterCharacters.count
         }
         
-        return character?.data.results.count ?? 0
+        return characters.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -120,7 +118,7 @@ extension HomeViewController {
         if isFiltering() {
             cell.model = filterCharacters[indexPath.row]
         } else {
-            cell.model = character?.data.results[indexPath.row]
+            cell.model = characters[indexPath.row]
         }
         
         return cell
@@ -132,7 +130,7 @@ extension HomeViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == indexPath.row - 2 {
+        if isFiltering() == false, indexPath.row == characters.count - 2 {
             getCharacters()
         }
     }
