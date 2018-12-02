@@ -19,10 +19,13 @@ enum APIConstant {
         static let timeStamp = "ts"
         static let apiKey = "apikey"
         static let hash = "hash"
+        static let limit = "limit"
+        static let offset = "offset"
     }
     
     enum Value {
         static let timeStamp = "1"
+        static let limit = 20
         static var publicKey = "2b78d362481839c76e3df81e3b13d6e5"
         static var privateKey = "a1b0fc8354dee2423349c6d1453dbc91a7716bc6"
     }
