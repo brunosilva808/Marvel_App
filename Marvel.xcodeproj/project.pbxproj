@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C3109D321B467A400833C21 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109D221B467A400833C21 /* DetailsViewController.swift */; };
 		3C76350721B2F333004686F5 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76350621B2F333004686F5 /* ServiceRequest.swift */; };
 		3C76350921B2F395004686F5 /* ServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76350821B2F395004686F5 /* ServiceEndpoint.swift */; };
 		3C76350C21B2F3F9004686F5 /* ServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76350B21B2F3F9004686F5 /* ServiceConfigurator.swift */; };
@@ -28,7 +29,6 @@
 		3C91AA8821A1B79E006BCC1B /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C91AA8721A1B79E006BCC1B /* ImageView.swift */; };
 		3C91AA8A21A1ED9D006BCC1B /* FullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C91AA8921A1ED9D006BCC1B /* FullScreenViewController.swift */; };
 		3CA5BEA321A0436D00704410 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5BEA221A0436D00704410 /* Comic.swift */; };
-		3CF12E3121B42A60000AC96F /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF12E3021B42A60000AC96F /* HomeViewController.xib */; };
 		3CF12E3421B431BC000AC96F /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF12E3221B431BC000AC96F /* CharacterCell.swift */; };
 		3CF12E3521B431BC000AC96F /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF12E3321B431BC000AC96F /* CharacterCell.xib */; };
 		3CF12E3821B432C5000AC96F /* ReusabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF12E3621B432C4000AC96F /* ReusabelView.swift */; };
@@ -54,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C3109D221B467A400833C21 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		3C76350621B2F333004686F5 /* ServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		3C76350821B2F395004686F5 /* ServiceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndpoint.swift; sourceTree = "<group>"; };
 		3C76350B21B2F3F9004686F5 /* ServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfigurator.swift; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		3C91AA8721A1B79E006BCC1B /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		3C91AA8921A1ED9D006BCC1B /* FullScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenViewController.swift; sourceTree = "<group>"; };
 		3CA5BEA221A0436D00704410 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
-		3CF12E3021B42A60000AC96F /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		3CF12E3221B431BC000AC96F /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		3CF12E3321B431BC000AC96F /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
 		3CF12E3621B432C4000AC96F /* ReusabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReusabelView.swift; path = ../../../Talkdesk/Talkdesk/Helpers/ReusabelView.swift; sourceTree = "<group>"; };
@@ -254,8 +254,8 @@
 			isa = PBXGroup;
 			children = (
 				7E41420B219EE6F900ADFA76 /* HomeViewController.swift */,
-				3CF12E3021B42A60000AC96F /* HomeViewController.xib */,
 				3C91AA8921A1ED9D006BCC1B /* FullScreenViewController.swift */,
+				3C3109D221B467A400833C21 /* DetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -375,7 +375,6 @@
 				7E9B855E219F4993008EC947 /* ImageCell.xib in Resources */,
 				7E4141F6219EE66500ADFA76 /* LaunchScreen.storyboard in Resources */,
 				3CF12E3521B431BC000AC96F /* CharacterCell.xib in Resources */,
-				3CF12E3121B42A60000AC96F /* HomeViewController.xib in Resources */,
 				7E4141F3219EE66500ADFA76 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +399,7 @@
 				3C76351F21B31A5E004686F5 /* HTTPTask.swift in Sources */,
 				3C76351321B2F8EC004686F5 /* NetworkLayer.swift in Sources */,
 				3C91AA8621A07BA3006BCC1B /* MD5Digest.swift in Sources */,
+				3C3109D321B467A400833C21 /* DetailsViewController.swift in Sources */,
 				3CF12E3821B432C5000AC96F /* ReusabelView.swift in Sources */,
 				3C76350E21B2F4A5004686F5 /* Request.swift in Sources */,
 				3C76350C21B2F3F9004686F5 /* ServiceConfigurator.swift in Sources */,
@@ -578,6 +578,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E4WPGTUQAN;
 				INFOPLIST_FILE = Marvel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -596,6 +597,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E4WPGTUQAN;
 				INFOPLIST_FILE = Marvel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
