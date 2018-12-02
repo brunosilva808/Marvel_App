@@ -39,6 +39,12 @@ class HomeViewController: UITableViewController {
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
         tableView.registerNib(for: CharacterCell.self)
+        
+        let spinner = UIActivityIndicatorView(style: .gray)
+        spinner.startAnimating()
+        spinner.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 44)
+        self.tableView.tableFooterView = spinner
+        self.tableView.tableFooterView?.isHidden = true
     }
     
     func showDetailsViewController(indexPath: IndexPath) {
@@ -64,8 +70,10 @@ class HomeViewController: UITableViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
-        }) {
-            
+        }, onError: {}) {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.tableFooterView?.isHidden = true
+            }
         }
     }
     
@@ -132,6 +140,7 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if isFiltering() == false, indexPath.row == characters.count - 2 {
             getCharacters()
+            tableView.tableFooterView?.isHidden = false
         }
     }
     

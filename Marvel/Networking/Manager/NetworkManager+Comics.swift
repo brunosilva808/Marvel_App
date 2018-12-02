@@ -11,8 +11,9 @@ extension NetworkManager {
     
     typealias APISuccessCallback<T> = (_ response: T) -> ()
     typealias APIErrorCallback = () -> ()
+    typealias APIFinalCallback = () -> ()
     
-    func getCharacters(page: Int, onSuccess: @escaping APISuccessCallback<Character>, onError: @escaping APIErrorCallback) {
+    func getCharacters(page: Int, onSuccess: @escaping APISuccessCallback<Character>, onError: @escaping APIErrorCallback, onFinally: @escaping APIFinalCallback) {
         router.request(.characters, page: page) { data, response, error in
             
             if error != nil {
@@ -31,6 +32,8 @@ extension NetworkManager {
                 print(jsonError.localizedDescription)
                 onError()
             }
+            
+            onFinally()
         }
     }
     
