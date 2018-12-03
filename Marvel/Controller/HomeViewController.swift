@@ -20,25 +20,25 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupSearchController()
-        setupTableView()
-        getCharacters()
+        self.setupSearchController()
+        self.setupTableView()
+        self.getCharacters()
     }
     
     func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
+        self.searchController.searchResultsUpdater = self
+        self.searchController.obscuresBackgroundDuringPresentation = false
+        self.searchController.searchBar.placeholder = "Search"
+        self.navigationItem.searchController = searchController
+        self.definesPresentationContext = true
     }
     
     func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.registerNib(for: CharacterCell.self)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.estimatedRowHeight = 44
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.registerNib(for: CharacterCell.self)
         
         let spinner = UIActivityIndicatorView(style: .gray)
         spinner.startAnimating()
@@ -51,13 +51,14 @@ class HomeViewController: UITableViewController {
         var result: Result?
         
         if isFiltering() {
-            result = filterCharacters[indexPath.row]
+            result = self.filterCharacters[indexPath.row]
         } else {
-            result = characters[indexPath.row]
+            result = self.characters[indexPath.row]
         }
         
         let detailsViewController = DetailsViewController()
         detailsViewController.result = result
+        detailsViewController.delegate = self
         self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
@@ -83,19 +84,19 @@ class HomeViewController: UITableViewController {
 extension HomeViewController {
     
     private func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
+        return self.searchController.searchBar.text?.isEmpty ?? true
     }
     
     private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filterCharacters = characters.filter({( result : Result) -> Bool in
+        self.filterCharacters = characters.filter({( result : Result) -> Bool in
             return result.name.lowercased().contains(searchText.lowercased())
         })
         
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     private func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
+        return self.searchController.isActive && !self.searchBarIsEmpty()
     }
 }
 
@@ -103,7 +104,7 @@ extension HomeViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
-            filterContentForSearchText(text)
+            self.filterContentForSearchText(text)
         }
     }
     
@@ -113,15 +114,16 @@ extension HomeViewController: UISearchResultsUpdating {
 extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering() {
-            return filterCharacters.count
+        if self.isFiltering() {
+            return self.filterCharacters.count
         }
         
-        return characters.count
+        return self.characters.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.reuseIdentifier, for: indexPath) as! CharacterCell
+        cell.delegate = self
         
         if isFiltering() {
             cell.model = filterCharacters[indexPath.row]
@@ -134,14 +136,20 @@ extension HomeViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showDetailsViewController(indexPath: indexPath)
+        self.showDetailsViewController(indexPath: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if isFiltering() == false, indexPath.row == characters.count - 2 {
-            getCharacters()
-            tableView.tableFooterView?.isHidden = false
+            self.getCharacters()
+            self.tableView.tableFooterView?.isHidden = false
         }
     }
     
+}
+
+extension HomeViewController: CharacterCellDelegate, DetailsViewDelegate {
+    func favouriteCharacterButtonPressed() {
+        self.tableView.reloadData()
+    }
 }
