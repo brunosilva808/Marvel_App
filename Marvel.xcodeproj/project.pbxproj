@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3C3109D321B467A400833C21 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109D221B467A400833C21 /* DetailsViewController.swift */; };
+		3C3109DE21B5D07B00833C21 /* ImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109DA21B5D07B00833C21 /* ImageView+Extensions.swift */; };
+		3C3109DF21B5D07B00833C21 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109DB21B5D07B00833C21 /* UITableView+Extensions.swift */; };
+		3C3109E021B5D07B00833C21 /* ReusabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109DC21B5D07B00833C21 /* ReusabelView.swift */; };
+		3C3109E121B5D07B00833C21 /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109DD21B5D07B00833C21 /* MD5Digest.swift */; };
+		3C3109E321B5D09C00833C21 /* UserDefaultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109E221B5D09C00833C21 /* UserDefaultsDataSource.swift */; };
 		3C76350721B2F333004686F5 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76350621B2F333004686F5 /* ServiceRequest.swift */; };
 		3C76350921B2F395004686F5 /* ServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76350821B2F395004686F5 /* ServiceEndpoint.swift */; };
 		3C76350C21B2F3F9004686F5 /* ServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76350B21B2F3F9004686F5 /* ServiceConfigurator.swift */; };
@@ -25,14 +30,10 @@
 		3C76352B21B34BD5004686F5 /* MarvelEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76352A21B34BD5004686F5 /* MarvelEndpoint.swift */; };
 		3C76352D21B36446004686F5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76352C21B36446004686F5 /* NetworkManager.swift */; };
 		3C76352F21B36717004686F5 /* NetworkManager+Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76352E21B36717004686F5 /* NetworkManager+Comics.swift */; };
-		3C91AA8621A07BA3006BCC1B /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C91AA8521A07BA3006BCC1B /* MD5Digest.swift */; };
-		3C91AA8821A1B79E006BCC1B /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C91AA8721A1B79E006BCC1B /* ImageView.swift */; };
 		3C91AA8A21A1ED9D006BCC1B /* FullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C91AA8921A1ED9D006BCC1B /* FullScreenViewController.swift */; };
 		3CA5BEA321A0436D00704410 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5BEA221A0436D00704410 /* Comic.swift */; };
 		3CF12E3421B431BC000AC96F /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF12E3221B431BC000AC96F /* CharacterCell.swift */; };
 		3CF12E3521B431BC000AC96F /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF12E3321B431BC000AC96F /* CharacterCell.xib */; };
-		3CF12E3821B432C5000AC96F /* ReusabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF12E3621B432C4000AC96F /* ReusabelView.swift */; };
-		3CF12E3921B432C5000AC96F /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF12E3721B432C4000AC96F /* UITableView+Extensions.swift */; };
 		7E4141EC219EE66000ADFA76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4141EB219EE66000ADFA76 /* AppDelegate.swift */; };
 		7E4141F3219EE66500ADFA76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E4141F2219EE66500ADFA76 /* Assets.xcassets */; };
 		7E4141F6219EE66500ADFA76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E4141F4219EE66500ADFA76 /* LaunchScreen.storyboard */; };
@@ -55,6 +56,11 @@
 
 /* Begin PBXFileReference section */
 		3C3109D221B467A400833C21 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		3C3109DA21B5D07B00833C21 /* ImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageView+Extensions.swift"; sourceTree = "<group>"; };
+		3C3109DB21B5D07B00833C21 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		3C3109DC21B5D07B00833C21 /* ReusabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusabelView.swift; sourceTree = "<group>"; };
+		3C3109DD21B5D07B00833C21 /* MD5Digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5Digest.swift; sourceTree = "<group>"; };
+		3C3109E221B5D09C00833C21 /* UserDefaultsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataSource.swift; sourceTree = "<group>"; };
 		3C76350621B2F333004686F5 /* ServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		3C76350821B2F395004686F5 /* ServiceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndpoint.swift; sourceTree = "<group>"; };
 		3C76350B21B2F3F9004686F5 /* ServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfigurator.swift; sourceTree = "<group>"; };
@@ -72,14 +78,10 @@
 		3C76352A21B34BD5004686F5 /* MarvelEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelEndpoint.swift; sourceTree = "<group>"; };
 		3C76352C21B36446004686F5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3C76352E21B36717004686F5 /* NetworkManager+Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManager+Comics.swift"; sourceTree = "<group>"; };
-		3C91AA8521A07BA3006BCC1B /* MD5Digest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD5Digest.swift; sourceTree = "<group>"; };
-		3C91AA8721A1B79E006BCC1B /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		3C91AA8921A1ED9D006BCC1B /* FullScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenViewController.swift; sourceTree = "<group>"; };
 		3CA5BEA221A0436D00704410 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
 		3CF12E3221B431BC000AC96F /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		3CF12E3321B431BC000AC96F /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
-		3CF12E3621B432C4000AC96F /* ReusabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReusabelView.swift; path = ../../../Talkdesk/Talkdesk/Helpers/ReusabelView.swift; sourceTree = "<group>"; };
-		3CF12E3721B432C4000AC96F /* UITableView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Extensions.swift"; path = "../../../Talkdesk/Talkdesk/Helpers/UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		7E4141E8219EE66000ADFA76 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4141EB219EE66000ADFA76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E4141F2219EE66500ADFA76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +114,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C3109D821B5D07B00833C21 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3C3109D921B5D07B00833C21 /* Extensions */,
+				3C3109DD21B5D07B00833C21 /* MD5Digest.swift */,
+				3C3109E221B5D09C00833C21 /* UserDefaultsDataSource.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3C3109D921B5D07B00833C21 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3C3109DA21B5D07B00833C21 /* ImageView+Extensions.swift */,
+				3C3109DB21B5D07B00833C21 /* UITableView+Extensions.swift */,
+				3C3109DC21B5D07B00833C21 /* ReusabelView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		3C76350A21B2F3AA004686F5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,7 +245,7 @@
 				3C76351421B2F8F0004686F5 /* Network */,
 				3C76350F21B2F4AA004686F5 /* Request */,
 				7E9B8542219F460F008EC947 /* Service */,
-				7E414210219EE83300ADFA76 /* Helpers */,
+				3C3109D821B5D07B00833C21 /* Helpers */,
 				7E414213219EE86300ADFA76 /* Resources */,
 				7E4141F7219EE66500ADFA76 /* Info.plist */,
 			);
@@ -237,17 +259,6 @@
 				7E414202219EE66600ADFA76 /* Info.plist */,
 			);
 			path = MarvelTests;
-			sourceTree = "<group>";
-		};
-		7E414210219EE83300ADFA76 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				3CF12E3621B432C4000AC96F /* ReusabelView.swift */,
-				3CF12E3721B432C4000AC96F /* UITableView+Extensions.swift */,
-				3C91AA8521A07BA3006BCC1B /* MD5Digest.swift */,
-				3C91AA8721A1B79E006BCC1B /* ImageView.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		7E414211219EE83B00ADFA76 /* Controller */ = {
@@ -396,30 +407,31 @@
 				3C76352921B32730004686F5 /* Router.swift in Sources */,
 				3C76352521B3217C004686F5 /* JSONParameterEncoder.swift in Sources */,
 				3C76352121B31B3A004686F5 /* ParameterEncoder.swift in Sources */,
+				3C3109E021B5D07B00833C21 /* ReusabelView.swift in Sources */,
 				3C76351F21B31A5E004686F5 /* HTTPTask.swift in Sources */,
 				3C76351321B2F8EC004686F5 /* NetworkLayer.swift in Sources */,
-				3C91AA8621A07BA3006BCC1B /* MD5Digest.swift in Sources */,
 				3C3109D321B467A400833C21 /* DetailsViewController.swift in Sources */,
-				3CF12E3821B432C5000AC96F /* ReusabelView.swift in Sources */,
 				3C76350E21B2F4A5004686F5 /* Request.swift in Sources */,
 				3C76350C21B2F3F9004686F5 /* ServiceConfigurator.swift in Sources */,
 				3CA5BEA321A0436D00704410 /* Comic.swift in Sources */,
+				3C3109DF21B5D07B00833C21 /* UITableView+Extensions.swift in Sources */,
 				3C76352F21B36717004686F5 /* NetworkManager+Comics.swift in Sources */,
 				3C76350921B2F395004686F5 /* ServiceEndpoint.swift in Sources */,
 				3C76351121B2F594004686F5 /* APIEndpoint.swift in Sources */,
 				3C76352321B31D4B004686F5 /* URLParameterEncoder.swift in Sources */,
 				3C76352D21B36446004686F5 /* NetworkManager.swift in Sources */,
-				3CF12E3921B432C5000AC96F /* UITableView+Extensions.swift in Sources */,
 				7E9B8541219F460B008EC947 /* Service.swift in Sources */,
+				3C3109E321B5D09C00833C21 /* UserDefaultsDataSource.swift in Sources */,
 				3C76351B21B311C4004686F5 /* EndpointType.swift in Sources */,
 				3C91AA8A21A1ED9D006BCC1B /* FullScreenViewController.swift in Sources */,
 				7E4141EC219EE66000ADFA76 /* AppDelegate.swift in Sources */,
+				3C3109DE21B5D07B00833C21 /* ImageView+Extensions.swift in Sources */,
 				3C76350721B2F333004686F5 /* ServiceRequest.swift in Sources */,
 				3C76352B21B34BD5004686F5 /* MarvelEndpoint.swift in Sources */,
 				3C76351D21B31A07004686F5 /* HTTPMethod.swift in Sources */,
+				3C3109E121B5D07B00833C21 /* MD5Digest.swift in Sources */,
 				3CF12E3421B431BC000AC96F /* CharacterCell.swift in Sources */,
 				7E9B855D219F4993008EC947 /* ImageCell.swift in Sources */,
-				3C91AA8821A1B79E006BCC1B /* ImageView.swift in Sources */,
 				7E41420C219EE6F900ADFA76 /* HomeViewController.swift in Sources */,
 				3C76352721B32396004686F5 /* NetworkRouter.swift in Sources */,
 			);

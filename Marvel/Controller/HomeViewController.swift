@@ -122,6 +122,7 @@ extension HomeViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.reuseIdentifier, for: indexPath) as! CharacterCell
+        cell.delegate = self
         
         if isFiltering() {
             cell.model = filterCharacters[indexPath.row]
@@ -144,4 +145,10 @@ extension HomeViewController {
         }
     }
     
+}
+
+extension HomeViewController: CharacterCellDelegate {
+    func favouriteCharacterButtonPressed() {
+        tableView.reloadData()
+    }
 }

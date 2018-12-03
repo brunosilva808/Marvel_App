@@ -13,41 +13,58 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CharacterCell" customModule="Marvel" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HgV-ta-Iu5">
-                        <rect key="frame" x="16" y="5" width="55" height="55"/>
+                        <rect key="frame" x="16" y="5" width="55" height="75"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="55" id="KlU-C1-FDp"/>
-                            <constraint firstAttribute="height" constant="55" id="w7u-YF-eYx"/>
+                            <constraint firstAttribute="height" constant="75" id="xUd-EB-rH9"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMr-3f-GXh">
-                        <rect key="frame" x="79" y="22" width="225" height="21"/>
+                        <rect key="frame" x="79" y="32" width="225" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exT-Eg-WZF">
+                        <rect key="frame" x="249" y="15" width="55" height="55"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="55" id="Unz-9j-e7j"/>
+                            <constraint firstAttribute="width" constant="55" id="fyO-4r-GYG"/>
+                        </constraints>
+                        <size key="titleShadowOffset" width="-25" height="-25"/>
+                        <state key="normal" image="star_empty"/>
+                        <state key="selected" image="star_full"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="HgV-ta-Iu5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="G3Q-Rs-Cba"/>
                     <constraint firstItem="PMr-3f-GXh" firstAttribute="leading" secondItem="HgV-ta-Iu5" secondAttribute="trailing" constant="8" id="Kgn-Sr-Fkx"/>
                     <constraint firstAttribute="trailing" secondItem="PMr-3f-GXh" secondAttribute="trailing" constant="16" id="LyS-yF-vl0"/>
+                    <constraint firstAttribute="trailing" secondItem="exT-Eg-WZF" secondAttribute="trailing" constant="16" id="MIN-qF-w8A"/>
                     <constraint firstItem="HgV-ta-Iu5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="h5C-OQ-SHO"/>
                     <constraint firstAttribute="bottom" secondItem="HgV-ta-Iu5" secondAttribute="bottom" constant="4.5" id="kgy-tJ-bqF"/>
                     <constraint firstItem="PMr-3f-GXh" firstAttribute="centerY" secondItem="HgV-ta-Iu5" secondAttribute="centerY" id="wZC-di-Jb9"/>
+                    <constraint firstItem="exT-Eg-WZF" firstAttribute="centerY" secondItem="HgV-ta-Iu5" secondAttribute="centerY" id="xI0-i1-ReE"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="characterImageView" destination="HgV-ta-Iu5" id="ih8-83-79a"/>
+                <outlet property="favouriteButton" destination="exT-Eg-WZF" id="4dQ-5g-N7f"/>
                 <outlet property="titleLabel" destination="PMr-3f-GXh" id="vbC-6L-hIE"/>
             </connections>
             <point key="canvasLocation" x="132.80000000000001" y="109.29535232383809"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="star_empty" width="256" height="256"/>
+        <image name="star_full" width="256" height="256"/>
+    </resources>
 </document>
