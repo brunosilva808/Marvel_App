@@ -26,8 +26,8 @@
                             <constraint firstAttribute="height" constant="75" id="xUd-EB-rH9"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMr-3f-GXh">
-                        <rect key="frame" x="79" y="32" width="225" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMr-3f-GXh">
+                        <rect key="frame" x="79" y="32.5" width="154" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -44,9 +44,9 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="exT-Eg-WZF" firstAttribute="leading" secondItem="PMr-3f-GXh" secondAttribute="trailing" constant="16" id="476-Uj-Xv5"/>
                     <constraint firstItem="HgV-ta-Iu5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="G3Q-Rs-Cba"/>
                     <constraint firstItem="PMr-3f-GXh" firstAttribute="leading" secondItem="HgV-ta-Iu5" secondAttribute="trailing" constant="8" id="Kgn-Sr-Fkx"/>
-                    <constraint firstAttribute="trailing" secondItem="PMr-3f-GXh" secondAttribute="trailing" constant="16" id="LyS-yF-vl0"/>
                     <constraint firstAttribute="trailing" secondItem="exT-Eg-WZF" secondAttribute="trailing" constant="16" id="MIN-qF-w8A"/>
                     <constraint firstItem="HgV-ta-Iu5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="h5C-OQ-SHO"/>
                     <constraint firstAttribute="bottom" secondItem="HgV-ta-Iu5" secondAttribute="bottom" constant="4.5" id="kgy-tJ-bqF"/>

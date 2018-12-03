@@ -13,6 +13,9 @@
 		3C3109E021B5D07B00833C21 /* ReusabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109DC21B5D07B00833C21 /* ReusabelView.swift */; };
 		3C3109E121B5D07B00833C21 /* MD5Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109DD21B5D07B00833C21 /* MD5Digest.swift */; };
 		3C3109E321B5D09C00833C21 /* UserDefaultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109E221B5D09C00833C21 /* UserDefaultsDataSource.swift */; };
+		3C3109E521B5E0C800833C21 /* StaticTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109E421B5E0C800833C21 /* StaticTableController.swift */; };
+		3C3109E821B5E23C00833C21 /* UIView+UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109E721B5E23B00833C21 /* UIView+UINib.swift */; };
+		3C3109EA21B5E43D00833C21 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109E921B5E43D00833C21 /* Utils.swift */; };
 		3C76350721B2F333004686F5 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76350621B2F333004686F5 /* ServiceRequest.swift */; };
 		3C76350921B2F395004686F5 /* ServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76350821B2F395004686F5 /* ServiceEndpoint.swift */; };
 		3C76350C21B2F3F9004686F5 /* ServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76350B21B2F3F9004686F5 /* ServiceConfigurator.swift */; };
@@ -61,6 +64,9 @@
 		3C3109DC21B5D07B00833C21 /* ReusabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusabelView.swift; sourceTree = "<group>"; };
 		3C3109DD21B5D07B00833C21 /* MD5Digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5Digest.swift; sourceTree = "<group>"; };
 		3C3109E221B5D09C00833C21 /* UserDefaultsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataSource.swift; sourceTree = "<group>"; };
+		3C3109E421B5E0C800833C21 /* StaticTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableController.swift; sourceTree = "<group>"; };
+		3C3109E721B5E23B00833C21 /* UIView+UINib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+UINib.swift"; sourceTree = "<group>"; };
+		3C3109E921B5E43D00833C21 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		3C76350621B2F333004686F5 /* ServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		3C76350821B2F395004686F5 /* ServiceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndpoint.swift; sourceTree = "<group>"; };
 		3C76350B21B2F3F9004686F5 /* ServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfigurator.swift; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 				3C3109D921B5D07B00833C21 /* Extensions */,
 				3C3109DD21B5D07B00833C21 /* MD5Digest.swift */,
 				3C3109E221B5D09C00833C21 /* UserDefaultsDataSource.swift */,
+				3C3109E921B5E43D00833C21 /* Utils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -127,11 +134,20 @@
 		3C3109D921B5D07B00833C21 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3C3109E721B5E23B00833C21 /* UIView+UINib.swift */,
 				3C3109DA21B5D07B00833C21 /* ImageView+Extensions.swift */,
 				3C3109DB21B5D07B00833C21 /* UITableView+Extensions.swift */,
 				3C3109DC21B5D07B00833C21 /* ReusabelView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3C3109E621B5E0CC00833C21 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				3C3109E421B5E0C800833C21 /* StaticTableController.swift */,
+			);
+			path = Generic;
 			sourceTree = "<group>";
 		};
 		3C76350A21B2F3AA004686F5 /* Extension */ = {
@@ -264,6 +280,7 @@
 		7E414211219EE83B00ADFA76 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3C3109E621B5E0CC00833C21 /* Generic */,
 				7E41420B219EE6F900ADFA76 /* HomeViewController.swift */,
 				3C91AA8921A1ED9D006BCC1B /* FullScreenViewController.swift */,
 				3C3109D221B467A400833C21 /* DetailsViewController.swift */,
@@ -412,6 +429,7 @@
 				3C76351321B2F8EC004686F5 /* NetworkLayer.swift in Sources */,
 				3C3109D321B467A400833C21 /* DetailsViewController.swift in Sources */,
 				3C76350E21B2F4A5004686F5 /* Request.swift in Sources */,
+				3C3109E821B5E23C00833C21 /* UIView+UINib.swift in Sources */,
 				3C76350C21B2F3F9004686F5 /* ServiceConfigurator.swift in Sources */,
 				3CA5BEA321A0436D00704410 /* Comic.swift in Sources */,
 				3C3109DF21B5D07B00833C21 /* UITableView+Extensions.swift in Sources */,
@@ -427,10 +445,12 @@
 				7E4141EC219EE66000ADFA76 /* AppDelegate.swift in Sources */,
 				3C3109DE21B5D07B00833C21 /* ImageView+Extensions.swift in Sources */,
 				3C76350721B2F333004686F5 /* ServiceRequest.swift in Sources */,
+				3C3109E521B5E0C800833C21 /* StaticTableController.swift in Sources */,
 				3C76352B21B34BD5004686F5 /* MarvelEndpoint.swift in Sources */,
 				3C76351D21B31A07004686F5 /* HTTPMethod.swift in Sources */,
 				3C3109E121B5D07B00833C21 /* MD5Digest.swift in Sources */,
 				3CF12E3421B431BC000AC96F /* CharacterCell.swift in Sources */,
+				3C3109EA21B5E43D00833C21 /* Utils.swift in Sources */,
 				7E9B855D219F4993008EC947 /* ImageCell.swift in Sources */,
 				7E41420C219EE6F900ADFA76 /* HomeViewController.swift in Sources */,
 				3C76352721B32396004686F5 /* NetworkRouter.swift in Sources */,

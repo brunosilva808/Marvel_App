@@ -9,11 +9,7 @@ import Foundation
 
 extension NetworkManager {
     
-    typealias APISuccessCallback<T> = (_ response: T) -> ()
-    typealias APIErrorCallback = () -> ()
-    typealias APIFinalCallback = () -> ()
-    
-    func getCharacters(page: Int, onSuccess: @escaping APISuccessCallback<Character>, onError: @escaping APIErrorCallback, onFinally: @escaping APIFinalCallback) {
+    func getCharacters(page: Int, onSuccess: @escaping ResponseCallback<Character>, onError: @escaping APIErrorCallback, onFinally: @escaping SimpleCallback) {
         router.request(.characters, page: page) { data, response, error in
             
             if error != nil {

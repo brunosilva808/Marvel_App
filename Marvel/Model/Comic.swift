@@ -27,7 +27,8 @@ struct Result: Codable {
     let name: String
     let description: String
     let thumbnail: Thumbnail
-//    let series: [Series]
+    let comics, series, events: Comics
+    let stories: Stories
 }
 
 struct Thumbnail: Codable {
@@ -40,6 +41,39 @@ struct Thumbnail: Codable {
     }
 }
 
-//enum Extension: String, Codable {
-//    case jpg = "jpg"
-//}
+enum Extension: String, Codable {
+    case gif = "gif"
+    case jpg = "jpg"
+}
+
+struct Comics: Codable {
+    let available: Int
+    let collectionURI: String
+    let items: [ComicsItem]
+    let returned: Int
+}
+
+struct ComicsItem: Codable {
+    let resourceURI: String
+    let name: String
+}
+
+struct Stories: Codable {
+    let available: Int
+    let collectionURI: String
+    let items: [StoriesItem]
+    let returned: Int
+}
+
+struct StoriesItem: Codable {
+    let resourceURI: String
+    let name: String
+    let type: ItemType
+}
+
+enum ItemType: String, Codable {
+    case cover = "cover"
+    case empty = ""
+    case interiorStory = "interiorStory"
+    case pinup = "pinup"
+}
