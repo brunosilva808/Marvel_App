@@ -15,7 +15,11 @@ class ComicCell: UICollectionViewCell, ModelPresenterCell {
             
             self.coverImageView.loadImageUsingUrlString(urlString: model.thumbnail.getImageUrl(size: .medium))
             self.titleLabel.text = model.title
-            self.issueNumberLabel.text = "Issue number #\(model.issueNumber)"
+            if let issueNumber = model.issueNumber {
+                self.issueNumberLabel.text = "Issue number #\(issueNumber)"
+            } else {
+                self.issueNumberLabel.text = ""
+            }
         }
     }
     

@@ -65,12 +65,13 @@ class DetailsViewController: StaticTableController {
                     }
                 }
                 }, onError: { (error) in
+                    print(error)
             }) {  [weak self] in
                 self?.dispatchGroup.leave()
             }
         }
     }
-    
+
     func getEvents() {
         if let url = result.events?.collectionURI {
             self.dispatchGroup.enter()
@@ -81,14 +82,14 @@ class DetailsViewController: StaticTableController {
                         self?.dataSource.append(cell)
                     }
                 }
-                
+
                 }, onError: {(_) in
             }) { [weak self] in
                 self?.dispatchGroup.leave()
             }
         }
     }
-    
+
     func getStories() {
         if let url = result.stories?.collectionURI {
             self.dispatchGroup.enter()
@@ -99,14 +100,14 @@ class DetailsViewController: StaticTableController {
                         self?.dataSource.append(cell)
                     }
                 }
-                
+
                 }, onError: {(_) in
             }) { [weak self] in
                 self?.dispatchGroup.leave()
             }
         }
     }
-    
+
     func getSeries() {
         if let url = result.series?.collectionURI {
             self.dispatchGroup.enter()
@@ -117,13 +118,14 @@ class DetailsViewController: StaticTableController {
                         self?.dataSource.append(cell)
                     }
                 }
-                
+
                 }, onError: { (_) in
             }) { [weak self] in
                 self?.dispatchGroup.leave()
             }
         }
     }
+    
 }
 
 extension DetailsViewController: FavouriteCharacterDelegate {
