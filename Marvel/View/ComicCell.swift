@@ -8,13 +8,12 @@
 import UIKit
 
 class ComicCell: UICollectionViewCell, ModelPresenterCell {
-
+    
     var model: Result?  {
         didSet {
             guard let model = self.model else { return }
             
-            let urlString = Service.shared.getImageUrl(thumbnail: model.thumbnail, size: APIConstant.Portrait.medium)
-            self.coverImageView.loadImageUsingUrlString(urlString: urlString)
+            self.coverImageView.loadImageUsingUrlString(urlString: model.thumbnail.getImageUrl(size: .medium))
             self.titleLabel.text = model.title
             self.issueNumberLabel.text = "Issue number #\(model.issueNumber)"
         }
@@ -31,5 +30,5 @@ class ComicCell: UICollectionViewCell, ModelPresenterCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
 }

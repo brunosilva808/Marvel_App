@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol CharacterCellDelegate {
+protocol FavouriteCharacterDelegate {
     func favouriteCharacterButtonPressed()
 }
 
 class CharacterCell: UITableViewCell, ModelPresenterCell {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var characterImageView: UIImageView! {
         didSet {
@@ -24,23 +24,22 @@ class CharacterCell: UITableViewCell, ModelPresenterCell {
             self.favouriteButton.addTarget(self, action: #selector(favouriteButtonPressed), for: .touchUpInside)
         }
     }
- 
-    var delegate: CharacterCellDelegate?
+    
+    var delegate: FavouriteCharacterDelegate?
     var model: Result? {
         didSet {
             guard let model = self.model else { return }
             
             self.titleLabel.text = model.name
-            let urlString = Service.shared.getImageUrl(thumbnail: model.thumbnail, size: APIConstant.Portrait.small)
-            self.characterImageView.loadImageUsingUrlString(urlString: urlString)
+            self.characterImageView.loadImageUsingUrlString(urlString: model.thumbnail.getImageUrl(size: .small))
             self.selectFavouriteCharacter()
         }
     }
-
+    
     func selectFavouriteCharacter() {
         guard let id = model?.id,
-        let favouriteId = UserDefaultsDataSource().readData(for: UserDefaultsKeys.favouriteCharacter),
-        let favourite = favouriteId as? Int else { return }
+            let favouriteId = UserDefaultsDataSource().readData(for: UserDefaultsKeys.favouriteCharacter),
+            let favourite = favouriteId as? Int else { return }
         
         if favourite == id {
             self.favouriteButton.setImage(UIImage(named: "star_full"), for: .normal)

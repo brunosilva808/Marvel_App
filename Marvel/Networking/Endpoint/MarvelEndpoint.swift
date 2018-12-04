@@ -15,7 +15,7 @@ public enum MarvelAPI {
     case characters
 }
 
-extension MarvelAPI: EndpointType {
+extension MarvelAPI: HTTPEndpoint {
     
     var environmentBaseURL : String {
         switch NetworkManager.environment {

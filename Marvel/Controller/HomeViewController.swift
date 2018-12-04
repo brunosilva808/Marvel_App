@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UITableViewController {
-
+    
     private var searchController = UISearchController(searchResultsController: nil)
     
     private let transition = PopAnimator()
@@ -63,16 +63,16 @@ class HomeViewController: UITableViewController {
     }
     
     func getCharacters() {
-        NetworkManager().getCharacters(page: page, onSuccess: { [weak self] (response) in
-            self?.characters.append(contentsOf: response.data.results)
-            self?.filterCharacters = response.data.results
+        NetworkManager().getData(endpoint: .characters, page: page, onSuccess: { [weak self] (data) in
+            self?.characters.append(contentsOf: data.results)
+            self?.filterCharacters = data.results
             self?.page += 1
             
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
-        }, onError: {error in
-            print(error)
+            }, onError: {error in
+                print(error)
         }) {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.tableFooterView?.isHidden = true
@@ -138,7 +138,7 @@ extension HomeViewController {
         }
         
         return cell
-//        return tableView.reusableCell(for: indexPath.row, with: filterCharacters[indexPath.row]) as CharacterCell
+        //        return tableView.reusableCell(for: indexPath.row, with: filterCharacters[indexPath.row]) as CharacterCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -156,7 +156,7 @@ extension HomeViewController {
 }
 
 // MARK: Favourite Protocol
-extension HomeViewController: CharacterCellDelegate, DetailsViewDelegate {
+extension HomeViewController: FavouriteCharacterDelegate {
     func favouriteCharacterButtonPressed() {
         self.tableView.reloadData()
     }

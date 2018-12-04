@@ -7,24 +7,24 @@
 
 import UIKit
 
-protocol DetailsViewDelegate {
-    func favouriteCharacterButtonPressed()
-}
+//protocol DetailsViewDelegate {
+//    func favouriteCharacterButtonPressed()
+//}
 
 class DetailsViewController: StaticTableController {
-
-    var delegate: DetailsViewDelegate?
+    
+    var delegate: FavouriteCharacterDelegate?
     var result: Result!
-    var apiHelper = APICallHelper()
     let cellCharacter = CharacterCell.fromNib()
     let cellContainer1 = ContainerCell.fromNib()
     let cellContainer2 = ContainerCell.fromNib()
     let cellContainer3 = ContainerCell.fromNib()
     let cellContainer4 = ContainerCell.fromNib()
+    let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = result.name
         self.tableView.registerNib(for: CharacterCell.self)
         self.tableView.registerNib(for: ContainerCell.self)
@@ -40,87 +40,93 @@ class DetailsViewController: StaticTableController {
         self.cellContainer4.set(title: "Series")
         self.dataSource.append(self.cellCharacter)
         
-        self.getData()
+        self.getComics()
+        self.getEvents()
+        self.getSeries()
+        self.getStories()
         
-        self.apiHelper.onCompletion = {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+        self.dispatchGroup.notify(queue: .main) {
+            self.tableView.reloadData()
         }
     }
- 
+    
     @objc func handleTap() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func getData() {
+    func getComics() {
         if let url = result.comics?.collectionURI {
-            self.apiHelper.started(request: .comics)
-            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
-                if response.data.results.count > 0 {
-                    self?.cellContainer1.model = response.data.results
+            self.dispatchGroup.enter()
+            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (data) in
+                if data.results.count > 0 {
+                    self?.cellContainer1.model = data.results
                     if let cell = self?.cellContainer1 {
                         self?.dataSource.append(cell)
                     }
                 }
-                
-                self?.apiHelper.finished(request: .comics, success: true)
-                }, onError: { [weak self] (error) in
-                    self?.apiHelper.finished(request: .comics, success: false)
-            }) {}
+                }, onError: { (error) in
+            }) {  [weak self] in
+                self?.dispatchGroup.leave()
+            }
         }
-        
+    }
+    
+    func getEvents() {
         if let url = result.events?.collectionURI {
-            self.apiHelper.started(request: .events)
-            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
-                if response.data.results.count > 0 {
-                    self?.cellContainer2.model = response.data.results
+            self.dispatchGroup.enter()
+            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (data) in
+                if data.results.count > 0 {
+                    self?.cellContainer2.model = data.results
                     if let cell = self?.cellContainer2 {
                         self?.dataSource.append(cell)
                     }
                 }
                 
-                self?.apiHelper.finished(request: .events, success: true)
-                }, onError: { [weak self] (error) in
-                    self?.apiHelper.finished(request: .events, success: false)
-            }) {}
+                }, onError: {(_) in
+            }) { [weak self] in
+                self?.dispatchGroup.leave()
+            }
         }
-        
+    }
+    
+    func getStories() {
         if let url = result.stories?.collectionURI {
-            self.apiHelper.started(request: .stories)
-            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
-                if response.data.results.count > 0 {
-                    self?.cellContainer3.model = response.data.results
+            self.dispatchGroup.enter()
+            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (data) in
+                if data.results.count > 0 {
+                    self?.cellContainer3.model = data.results
                     if let cell = self?.cellContainer3 {
                         self?.dataSource.append(cell)
                     }
                 }
                 
-                self?.apiHelper.finished(request: .stories, success: true)
-            }, onError: { [weak self] (error) in
-                self?.apiHelper.finished(request: .stories, success: false)
-            }) {}
+                }, onError: {(_) in
+            }) { [weak self] in
+                self?.dispatchGroup.leave()
+            }
         }
-        
+    }
+    
+    func getSeries() {
         if let url = result.series?.collectionURI {
-            self.apiHelper.started(request: .series)
-            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
-                if response.data.results.count > 0 {
-                    self?.cellContainer4.model = response.data.results
+            self.dispatchGroup.enter()
+            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (data) in
+                if data.results.count > 0 {
+                    self?.cellContainer4.model = data.results
                     if let cell = self?.cellContainer4 {
                         self?.dataSource.append(cell)
                     }
                 }
                 
-                self?.apiHelper.finished(request: .series, success: true)
-                }, onError: { [weak self] (error) in
-                    self?.apiHelper.finished(request: .series, success: false)
-            }) {}
+                }, onError: { (_) in
+            }) { [weak self] in
+                self?.dispatchGroup.leave()
+            }
         }
     }
 }
 
-extension DetailsViewController: CharacterCellDelegate {
+extension DetailsViewController: FavouriteCharacterDelegate {
     func favouriteCharacterButtonPressed() {
         self.delegate?.favouriteCharacterButtonPressed()
     }
