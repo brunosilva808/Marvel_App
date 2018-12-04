@@ -31,6 +31,12 @@ class DetailsViewController: StaticTableController {
         self.cellCharacter.delegate = self
         self.cellContainer1.model = self.result.comics
         self.dataSource.append(contentsOf: [self.cellCharacter, self.cellContainer1])
+        
+        NetworkManager().getResourceUri(urlString: result.comics.collectionURI, onSuccess: { (response) in
+            print(response)
+        }, onError: { (error) in
+            print(error)
+        }) {}
     }
     
 }

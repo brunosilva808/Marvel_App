@@ -9,11 +9,43 @@ import Foundation
 
 extension NetworkManager {
     
+    func getResourceUri(urlString: String, onSuccess: @escaping ResponseCallback<Character>, onError: @escaping APIErrorCallback, onFinally: @escaping SimpleCallback) {
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        var request = URLRequest(url: url,
+                                 cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                                 timeoutInterval: APIConstant.Value.timeoutInterval)
+        
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                onError(error?.localizedDescription ?? "Please check your connection")
+            }
+
+            guard let data = data else { return }
+
+            let string1 = String(data: data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
+            print(string1)
+            
+            do {
+                let comics = try JSONDecoder().decode(Character.self, from: data)
+                onSuccess(comics)
+            } catch let jsonError {
+                onError(jsonError.localizedDescription)
+            }
+
+            }.resume()
+    }
+    
     func getCharacters(page: Int, onSuccess: @escaping ResponseCallback<Character>, onError: @escaping APIErrorCallback, onFinally: @escaping SimpleCallback) {
         router.request(.characters, page: page) { data, response, error in
             
             if error != nil {
-                onError("Please check your connection")
+                onError(error?.localizedDescription ?? "Please check your connection")
             }
             
             if let response = response as? HTTPURLResponse {
@@ -39,6 +71,7 @@ extension NetworkManager {
             
             onFinally()
         }
+        
     }
     
 //    func getComics(filters: [Filter]? = [], onSuccess: @escaping APISuccessCallback<Comic>, onError: @escaping APIErrorCallback) {

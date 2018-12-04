@@ -12,7 +12,6 @@ enum NetworkEnvironment {
 }
 
 public enum MarvelAPI {
-    case comics
     case characters
 }
 
@@ -32,8 +31,6 @@ extension MarvelAPI: EndpointType {
     
     var path: String {
         switch self {
-        case .comics:
-            return "comics"
         case .characters:
             return "characters"
         }
