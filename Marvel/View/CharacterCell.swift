@@ -15,7 +15,11 @@ class CharacterCell: UITableViewCell, ModelPresenterCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var characterImageView: UIImageView!
-    @IBOutlet weak var favouriteButton: UIButton!
+    @IBOutlet weak var favouriteButton: UIButton! {
+        didSet {
+            self.favouriteButton.addTarget(self, action: #selector(favouriteButtonPressed), for: .touchUpInside)
+        }
+    }
  
     var delegate: CharacterCellDelegate?
     var model: Result? {
@@ -27,16 +31,6 @@ class CharacterCell: UITableViewCell, ModelPresenterCell {
             self.characterImageView.loadImageUsingUrlString(urlString: urlString)
             self.selectFavouriteCharacter()
         }
-    }
-    
-    func set(result: Result) {
-        self.model = result
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        self.favouriteButton.addTarget(self, action: #selector(favouriteButtonPressed), for: .touchUpInside)
     }
 
     func selectFavouriteCharacter() {

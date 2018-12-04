@@ -143,41 +143,41 @@ final class Service {
     typealias APISuccessCallback<T> = (_ response: T) -> ()
     typealias APIErrorCallback = () -> ()
     
-    func getComics(filters: [Filter]? = [], onSuccess: @escaping APISuccessCallback<Comic>, onError: @escaping APIErrorCallback) {
-        URLSession.shared.dataTask(with: request(endpoint: .comic, filters: filters)) { (data, response, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-            
-            guard let data = data else { return }
-
-            do {
-                let comics = try JSONDecoder().decode(Comic.self, from: data)
-                onSuccess(comics)
-            } catch let jsonError {
-                print(jsonError.localizedDescription)
-                onError()
-            }
-            
-        }.resume()
-    }
-    
-    func getComics1(filters: [Filter]? = [], onSuccess: @escaping APISuccessCallback<Comic>, onError: @escaping APIErrorCallback) {
-        URLSession.shared.dataTask(with: request(endpoint: .comic, filters: filters)) { (data, response, error) in
-            guard let data = data else { return }
-            let comics = try? JSONDecoder().decode(Comic.self, from: data)
-
-            switch comics?.code {
-            case 200:
-                onSuccess(comics!)
-                break
-            default:
-                onError()
-                break;
-            }
-
-        }.resume()
-    }
+//    func getComics(filters: [Filter]? = [], onSuccess: @escaping APISuccessCallback<Comic>, onError: @escaping APIErrorCallback) {
+//        URLSession.shared.dataTask(with: request(endpoint: .comic, filters: filters)) { (data, response, error) in
+//            if error != nil {
+//                print(error!.localizedDescription)
+//            }
+//            
+//            guard let data = data else { return }
+//
+//            do {
+//                let comics = try JSONDecoder().decode(Comic.self, from: data)
+//                onSuccess(comics)
+//            } catch let jsonError {
+//                print(jsonError.localizedDescription)
+//                onError()
+//            }
+//            
+//        }.resume()
+//    }
+//    
+//    func getComics1(filters: [Filter]? = [], onSuccess: @escaping APISuccessCallback<Comic>, onError: @escaping APIErrorCallback) {
+//        URLSession.shared.dataTask(with: request(endpoint: .comic, filters: filters)) { (data, response, error) in
+//            guard let data = data else { return }
+//            let comics = try? JSONDecoder().decode(Comic.self, from: data)
+//
+//            switch comics?.code {
+//            case 200:
+//                onSuccess(comics!)
+//                break
+//            default:
+//                onError()
+//                break;
+//            }
+//
+//        }.resume()
+//    }
     
     func getImageUrl(thumbnail: Thumbnail, size: APIConstant.Portrait) -> String {
         var urlString = thumbnail.path

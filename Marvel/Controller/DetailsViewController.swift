@@ -16,17 +16,21 @@ class DetailsViewController: StaticTableController {
     var delegate: DetailsViewDelegate?
     var result: Result!
     let cellCharacter = CharacterCell.fromNib()
+    let cellContainer1 = ContainerCell.fromNib()
+    let cellContainer2 = ContainerCell.fromNib()
+    let cellContainer3 = ContainerCell.fromNib()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = result.name
         self.tableView.registerNib(for: CharacterCell.self)
+        self.tableView.registerNib(for: ContainerCell.self)
         
-        
-        self.cellCharacter.set(result: self.result)
+        self.cellCharacter.model = self.result
         self.cellCharacter.delegate = self
-        self.dataSource.append(self.cellCharacter)
+        self.cellContainer1.model = self.result.comics
+        self.dataSource.append(contentsOf: [self.cellCharacter, self.cellContainer1])
     }
     
 }

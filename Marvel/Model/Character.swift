@@ -6,11 +6,6 @@
 //
 
 import Foundation
-
-struct Comic: Codable {
-    let code: Int
-}
-
 struct Character: Codable {
     let code: Int
     let status: String

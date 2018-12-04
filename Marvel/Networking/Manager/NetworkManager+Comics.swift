@@ -13,20 +13,28 @@ extension NetworkManager {
         router.request(.characters, page: page) { data, response, error in
             
             if error != nil {
-                onError()
+                onError("Please check your connection")
             }
             
-            guard let data = data else { return }
-            
-//            let string1 = String(data: data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
-//            print(string1)
-            
-            do {
-                let characters = try JSONDecoder().decode(Character.self, from: data)
-                onSuccess(characters)
-            } catch let jsonError {
-                print(jsonError.localizedDescription)
-                onError()
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                
+                switch result {
+                case .success:
+                    guard let data = data else { return }
+                    
+                    //            let string1 = String(data: data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
+                    //            print(string1)
+                    
+                    do {
+                        let characters = try JSONDecoder().decode(Character.self, from: data)
+                        onSuccess(characters)
+                    } catch let jsonError {
+                        onError(jsonError.localizedDescription)
+                    }
+                case .failure(let failure):
+                    onError(failure)
+                }
             }
             
             onFinally()

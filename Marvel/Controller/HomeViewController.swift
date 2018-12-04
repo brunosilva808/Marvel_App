@@ -71,7 +71,7 @@ class HomeViewController: UITableViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
-        }, onError: {}) {
+        }, onError: {error in }) {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.tableFooterView?.isHidden = true
             }

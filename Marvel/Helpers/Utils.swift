@@ -8,5 +8,5 @@
 import Foundation
 
 typealias ResponseCallback<T> = (_ response: T) -> ()
-typealias APIErrorCallback = () -> ()
+typealias APIErrorCallback = (String) -> ()
 typealias SimpleCallback = () -> ()

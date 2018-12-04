@@ -11,7 +11,7 @@ struct NetworkManager {
     static let environment: NetworkEnvironment = .production
     let router = Router<MarvelAPI>()
     
-    fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> HTTPResult<String>{
+    func handleNetworkResponse(_ response: HTTPURLResponse) -> HTTPResult<String>{
         switch response.statusCode {
         case 200...299: return .success
         case 401...500: return .failure(NetworkResponse.authenticationError.rawValue)
