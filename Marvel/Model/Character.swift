@@ -23,9 +23,9 @@ struct Result: Codable {
     let name: String
     let title: String?
     let description: String
+    let issueNumber: Int = 0
     let thumbnail: Thumbnail
     let comics, series, events, stories: Comics
-//    let stories: Stories
 }
 
 struct Thumbnail: Codable {
@@ -46,8 +46,8 @@ enum Extension: String, Codable {
 struct Comics: Codable {
     let available: Int
     let collectionURI: String
-    let items: [ComicsItem]
-    let returned: Int
+//    let items: [ComicsItem]
+//    let returned: Int
 }
 
 struct ComicsItem: Codable {

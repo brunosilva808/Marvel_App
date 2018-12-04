@@ -9,14 +9,14 @@ import UIKit
 
 class ComicCell: UICollectionViewCell, ModelPresenterCell {
 
-    var model: Result1?  {
+    var model: Result?  {
         didSet {
             guard let model = self.model else { return }
             
             let urlString = Service.shared.getImageUrl(thumbnail: model.thumbnail, size: APIConstant.Portrait.medium)
             self.coverImageView.loadImageUsingUrlString(urlString: urlString)
             self.titleLabel.text = model.title
-            self.issueNumberLabel.text = "Issue number #\(model.issueNumber)"
+//            self.issueNumberLabel.text = "Issue number #\(model.issueNumber)"
         }
     }
     

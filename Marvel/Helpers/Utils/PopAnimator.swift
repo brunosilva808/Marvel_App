@@ -12,25 +12,24 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     let duration = 1.0
     var presenting = true
     var originFrame = CGRect.zero
-
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return duration
+        return self.duration
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         let toView = transitionContext.view(forKey: .to)!
-        let detailsView = presenting ? toView : transitionContext.view(forKey: .from)!
-        let initialFrame = presenting ? originFrame : detailsView.frame
-        let finalFrame = presenting ? detailsView.frame : originFrame
+        let detailsView = self.presenting ? toView : transitionContext.view(forKey: .from)!
+        let initialFrame = self.presenting ? self.originFrame : detailsView.frame
+        let finalFrame = self.presenting ? detailsView.frame : self.originFrame
         
-        let xScaleFactor = presenting ?
+        let xScaleFactor = self.presenting ?
             
             initialFrame.width / finalFrame.width :
             finalFrame.width / initialFrame.width
         
-        let yScaleFactor = presenting ?
+        let yScaleFactor = self.presenting ?
             
             initialFrame.height / finalFrame.height :
             finalFrame.height / initialFrame.height
@@ -38,7 +37,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         let scaleTransform = CGAffineTransform(scaleX: xScaleFactor,
                                                y: yScaleFactor)
         
-        if presenting {
+        if self.presenting {
             detailsView.transform = scaleTransform
             detailsView.center = CGPoint(
                 x: initialFrame.midX,
@@ -49,17 +48,16 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         containerView.addSubview(toView)
         containerView.bringSubviewToFront(detailsView)
         
-        UIView.animate(withDuration: duration, delay:0.0,
-                       usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0,
+        UIView.animate(withDuration: duration,
+                       delay:0.0,
+                       usingSpringWithDamping: 0.6,
+                       initialSpringVelocity: 0.0,
                        animations: {
-                        detailsView.transform = self.presenting ?
-                            CGAffineTransform.identity : scaleTransform
-                        detailsView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
-        },
-                       completion: { _ in
+                       detailsView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform
+                       detailsView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
+        }, completion: { _ in
                         transitionContext.completeTransition(true)
-        }
-        )
+        })
 
     }
 

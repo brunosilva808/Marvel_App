@@ -9,7 +9,7 @@ import UIKit
 
 class ContainerCell: UITableViewCell, ModelPresenterCell {
 
-    var model: [Result1]? {
+    var model: [Result]? {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()

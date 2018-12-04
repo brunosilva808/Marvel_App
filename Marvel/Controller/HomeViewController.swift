@@ -7,8 +7,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class HomeViewController: UITableViewController {
 
     private var searchController = UISearchController(searchResultsController: nil)
@@ -152,21 +150,22 @@ extension HomeViewController {
     
 }
 
+// MARK: Favourite Protocol
 extension HomeViewController: CharacterCellDelegate, DetailsViewDelegate {
     func favouriteCharacterButtonPressed() {
         self.tableView.reloadData()
     }
 }
 
+// MARK: Animation Transition
 extension HomeViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        transition.presenting = true
-        
         let rectOfCellInTableView = tableView.rectForRow(at: self.indexPath)
         let rectOfCellInSuperview = tableView.convert(rectOfCellInTableView, to: tableView.superview)
         
+        transition.presenting = true
         transition.originFrame = rectOfCellInSuperview
         
         return transition
