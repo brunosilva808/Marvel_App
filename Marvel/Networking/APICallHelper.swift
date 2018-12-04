@@ -2,8 +2,7 @@
 //  APICallHelper.swift
 //  Move Me
 //
-//  Created by Artem Umanets on 29/05/2018.
-//  Copyright © 2018 Carbon by Bold. All rights reserved.
+//  Created by Bruno Silva on 29/05/2018.
 //
 
 import Foundation

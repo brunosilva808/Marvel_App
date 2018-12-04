@@ -1,7 +1,7 @@
 //
 //  UIView+UINib.swift
 //
-//  Created by Artem Umanets on 06/02/2018.
+//  Created by Bruno Silva on 06/02/2018.
 //  Copyright © 2018 Bruno Silva by Bold. All rights reserved.
 //
 
