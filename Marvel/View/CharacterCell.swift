@@ -51,7 +51,13 @@ class CharacterCell: UITableViewCell, ModelPresenterCell {
 
 extension CharacterCell {
     @objc func favouriteButtonPressed() {
-        guard let id = model?.id else { return }
+        guard var id = model?.id else { return }
+        
+        if let favouriteId = UserDefaultsDataSource().readData(for: UserDefaultsKeys.favouriteCharacter),
+        let favourite = favouriteId as? Int,
+        favourite == id {
+            id = 0
+        }
         
         UserDefaultsDataSource().writeData(id, for: UserDefaultsKeys.favouriteCharacter)
         self.selectFavouriteCharacter()
