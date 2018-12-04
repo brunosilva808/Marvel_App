@@ -9,11 +9,43 @@ import Foundation
 
 extension NetworkManager {
     
+    func getResourceUri(urlString: String, onSuccess: @escaping ResponseCallback<Comic>, onError: @escaping APIErrorCallback, onFinally: @escaping SimpleCallback) {
+
+        router.request(urlString: urlString) { (data, response, error) in
+            if error != nil {
+                onError(error?.localizedDescription ?? "Please check your connection")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                
+                switch result {
+                case .success:
+                    guard let data = data else { return }
+                    
+//                                let string1 = String(data: data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
+//                                print(string1)
+                    
+                    do {
+                        let characters = try JSONDecoder().decode(Comic.self, from: data)
+                        onSuccess(characters)
+                    } catch let jsonError {
+                        onError(jsonError.localizedDescription)
+                    }
+                case .failure(let failure):
+                    onError(failure)
+                }
+            }
+            
+            onFinally()
+        }
+    }
+    
     func getCharacters(page: Int, onSuccess: @escaping ResponseCallback<Character>, onError: @escaping APIErrorCallback, onFinally: @escaping SimpleCallback) {
         router.request(.characters, page: page) { data, response, error in
             
             if error != nil {
-                onError("Please check your connection")
+                onError(error?.localizedDescription ?? "Please check your connection")
             }
             
             if let response = response as? HTTPURLResponse {
@@ -39,6 +71,7 @@ extension NetworkManager {
             
             onFinally()
         }
+        
     }
     
 //    func getComics(filters: [Filter]? = [], onSuccess: @escaping APISuccessCallback<Comic>, onError: @escaping APIErrorCallback) {

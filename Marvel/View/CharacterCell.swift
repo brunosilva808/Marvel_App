@@ -2,7 +2,7 @@
 //  CharacterCell.swift
 //  Marvel
 //
-//  Created by Carbon on 02/12/2018.
+//  Created by Bruno Silva on 02/12/2018.
 //
 
 import UIKit
@@ -14,7 +14,11 @@ protocol CharacterCellDelegate {
 class CharacterCell: UITableViewCell, ModelPresenterCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var characterImageView: UIImageView!
+    @IBOutlet weak var characterImageView: UIImageView! {
+        didSet {
+            self.characterImageView.contentMode = .scaleAspectFill
+        }
+    }
     @IBOutlet weak var favouriteButton: UIButton! {
         didSet {
             self.favouriteButton.addTarget(self, action: #selector(favouriteButtonPressed), for: .touchUpInside)

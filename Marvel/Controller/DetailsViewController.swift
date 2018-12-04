@@ -2,7 +2,7 @@
 //  DetailsViewController.swift
 //  Marvel
 //
-//  Created by Carbon on 02/12/2018.
+//  Created by Bruno Silva on 02/12/2018.
 //
 
 import UIKit
@@ -29,8 +29,51 @@ class DetailsViewController: StaticTableController {
         
         self.cellCharacter.model = self.result
         self.cellCharacter.delegate = self
-        self.cellContainer1.model = self.result.comics
-        self.dataSource.append(contentsOf: [self.cellCharacter, self.cellContainer1])
+        self.cellContainer1.set(title: "Comics")
+        self.cellContainer2.set(title: "Stories")
+        self.cellContainer3.set(title: "Events")
+        self.dataSource.append(self.cellCharacter)
+        
+        NetworkManager().getResourceUri(urlString: result.comics.collectionURI, onSuccess: { [weak self] (response) in
+            if response.data.results.count > 0 {
+                self?.cellContainer1.model = response.data.results
+                if let cell = self?.cellContainer1 {
+                    self?.dataSource.append(cell)
+                }
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }, onError: { (error) in
+            print(error)
+        }) {}
+        
+        NetworkManager().getResourceUri(urlString: result.stories.collectionURI, onSuccess: { [weak self] (response) in
+            if response.data.results.count > 0 {
+                self?.cellContainer2.model = response.data.results
+                if let cell = self?.cellContainer2 {
+                    self?.dataSource.append(cell)
+                }            }
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+            }, onError: { (error) in
+                print(error)
+        }) {}
+        
+        NetworkManager().getResourceUri(urlString: result.events.collectionURI, onSuccess: { [weak self] (response) in
+            if response.data.results.count > 0 {
+                self?.cellContainer3.model = response.data.results
+                if let cell = self?.cellContainer3 {
+                    self?.dataSource.append(cell)
+                }
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+            }, onError: { (error) in
+                print(error)
+        }) {}
     }
     
 }

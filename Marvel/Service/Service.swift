@@ -24,6 +24,7 @@ enum APIConstant {
     }
     
     enum Value {
+        static let timeoutInterval = 10.0
         static let timeStamp = "1"
         static let limit = 20
         static var publicKey = "2b78d362481839c76e3df81e3b13d6e5"
