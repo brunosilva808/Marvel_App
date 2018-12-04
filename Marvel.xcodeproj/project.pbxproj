@@ -12,6 +12,7 @@
 		3C06BFC121B5FC5200EE8EA6 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06BFC021B5FC5200EE8EA6 /* UICollectionView+Extension.swift */; };
 		3C06BFC321B6144800EE8EA6 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06BFC221B6144800EE8EA6 /* Comic.swift */; };
 		3C06BFC521B6266400EE8EA6 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06BFC421B6266400EE8EA6 /* PopAnimator.swift */; };
+		3C06BFC821B6334300EE8EA6 /* APICallHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06BFC721B6334300EE8EA6 /* APICallHelper.swift */; };
 		3C3109D321B467A400833C21 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109D221B467A400833C21 /* DetailsViewController.swift */; };
 		3C3109DE21B5D07B00833C21 /* ImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109DA21B5D07B00833C21 /* ImageView+Extensions.swift */; };
 		3C3109DF21B5D07B00833C21 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3109DB21B5D07B00833C21 /* UITableView+Extensions.swift */; };
@@ -70,6 +71,7 @@
 		3C06BFC021B5FC5200EE8EA6 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		3C06BFC221B6144800EE8EA6 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
 		3C06BFC421B6266400EE8EA6 /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
+		3C06BFC721B6334300EE8EA6 /* APICallHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICallHelper.swift; sourceTree = "<group>"; };
 		3C3109D221B467A400833C21 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		3C3109DA21B5D07B00833C21 /* ImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageView+Extensions.swift"; sourceTree = "<group>"; };
 		3C3109DB21B5D07B00833C21 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		3C76351521B310D6004686F5 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				3C06BFC721B6334300EE8EA6 /* APICallHelper.swift */,
 				3C76351621B310E5004686F5 /* Endpoint */,
 				3C76351721B31103004686F5 /* Manager */,
 				3C76351821B31115004686F5 /* Service */,
@@ -455,6 +458,7 @@
 				3C06BFC121B5FC5200EE8EA6 /* UICollectionView+Extension.swift in Sources */,
 				3C76352921B32730004686F5 /* Router.swift in Sources */,
 				3C76352521B3217C004686F5 /* JSONParameterEncoder.swift in Sources */,
+				3C06BFC821B6334300EE8EA6 /* APICallHelper.swift in Sources */,
 				3C76352121B31B3A004686F5 /* ParameterEncoder.swift in Sources */,
 				3C3109E021B5D07B00833C21 /* ReusabelView.swift in Sources */,
 				3C76351F21B31A5E004686F5 /* HTTPTask.swift in Sources */,

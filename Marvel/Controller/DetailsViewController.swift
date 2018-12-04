@@ -15,6 +15,7 @@ class DetailsViewController: StaticTableController {
 
     var delegate: DetailsViewDelegate?
     var result: Result!
+    var apiHelper = APICallHelper()
     let cellCharacter = CharacterCell.fromNib()
     let cellContainer1 = ContainerCell.fromNib()
     let cellContainer2 = ContainerCell.fromNib()
@@ -39,7 +40,22 @@ class DetailsViewController: StaticTableController {
         self.cellContainer4.set(title: "Series")
         self.dataSource.append(self.cellCharacter)
         
+        self.getData()
+        
+        self.apiHelper.onCompletion = {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+ 
+    @objc func handleTap() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func getData() {
         if let url = result.comics?.collectionURI {
+            self.apiHelper.started(request: .comics)
             NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
                 if response.data.results.count > 0 {
                     self?.cellContainer1.model = response.data.results
@@ -47,30 +63,31 @@ class DetailsViewController: StaticTableController {
                         self?.dataSource.append(cell)
                     }
                 }
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.reloadData()
-                }
-            }, onError: { (error) in
-                print(error)
+                
+                self?.apiHelper.finished(request: .comics, success: true)
+                }, onError: { [weak self] (error) in
+                    self?.apiHelper.finished(request: .comics, success: false)
             }) {}
         }
         
         if let url = result.events?.collectionURI {
+            self.apiHelper.started(request: .events)
             NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
                 if response.data.results.count > 0 {
                     self?.cellContainer2.model = response.data.results
                     if let cell = self?.cellContainer2 {
                         self?.dataSource.append(cell)
-                    }            }
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.reloadData()
+                    }
                 }
-                }, onError: { (error) in
-                    print(error)
+                
+                self?.apiHelper.finished(request: .events, success: true)
+                }, onError: { [weak self] (error) in
+                    self?.apiHelper.finished(request: .events, success: false)
             }) {}
         }
         
         if let url = result.stories?.collectionURI {
+            self.apiHelper.started(request: .stories)
             NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
                 if response.data.results.count > 0 {
                     self?.cellContainer3.model = response.data.results
@@ -78,15 +95,15 @@ class DetailsViewController: StaticTableController {
                         self?.dataSource.append(cell)
                     }
                 }
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.reloadData()
-                }
-                }, onError: { (error) in
-                    print(error)
+                
+                self?.apiHelper.finished(request: .stories, success: true)
+            }, onError: { [weak self] (error) in
+                self?.apiHelper.finished(request: .stories, success: false)
             }) {}
         }
-
+        
         if let url = result.series?.collectionURI {
+            self.apiHelper.started(request: .series)
             NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
                 if response.data.results.count > 0 {
                     self?.cellContainer4.model = response.data.results
@@ -94,17 +111,12 @@ class DetailsViewController: StaticTableController {
                         self?.dataSource.append(cell)
                     }
                 }
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.reloadData()
-                }
-                }, onError: { (error) in
-                    print(error)
+                
+                self?.apiHelper.finished(request: .series, success: true)
+                }, onError: { [weak self] (error) in
+                    self?.apiHelper.finished(request: .series, success: false)
             }) {}
         }
-    }
- 
-    @objc func handleTap() {
-        self.dismiss(animated: true, completion: nil)
     }
 }
 
