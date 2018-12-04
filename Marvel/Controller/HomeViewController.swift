@@ -36,8 +36,6 @@ class HomeViewController: UITableViewController {
     }
     
     func setupTableView() {
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.registerNib(for: CharacterCell.self)

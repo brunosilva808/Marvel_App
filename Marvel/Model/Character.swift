@@ -24,8 +24,8 @@ struct Result: Codable {
     let title: String?
     let description: String
     let thumbnail: Thumbnail
-    let comics, series, events: Comics
-    let stories: Stories
+    let comics, series, events, stories: Comics
+//    let stories: Stories
 }
 
 struct Thumbnail: Codable {
