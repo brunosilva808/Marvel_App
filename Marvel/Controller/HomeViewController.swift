@@ -7,8 +7,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class HomeViewController: UITableViewController {
 
     private var searchController = UISearchController(searchResultsController: nil)
@@ -36,10 +34,9 @@ class HomeViewController: UITableViewController {
     }
     
     func setupTableView() {
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.registerNib(for: CharacterCell.self)
         
         let spinner = UIActivityIndicatorView(style: .gray)
@@ -94,7 +91,11 @@ extension HomeViewController {
     
     private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         self.filterCharacters = characters.filter({( result : Result) -> Bool in
-            return result.name.lowercased().contains(searchText.lowercased())
+            if let name = result.name {
+                return name.lowercased().contains(searchText.lowercased())
+            } else {
+                return false
+            }
         })
         
         self.tableView.reloadData()
@@ -154,21 +155,22 @@ extension HomeViewController {
     
 }
 
+// MARK: Favourite Protocol
 extension HomeViewController: CharacterCellDelegate, DetailsViewDelegate {
     func favouriteCharacterButtonPressed() {
         self.tableView.reloadData()
     }
 }
 
+// MARK: Animation Transition
 extension HomeViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        transition.presenting = true
-        
         let rectOfCellInTableView = tableView.rectForRow(at: self.indexPath)
         let rectOfCellInSuperview = tableView.convert(rectOfCellInTableView, to: tableView.superview)
         
+        transition.presenting = true
         transition.originFrame = rectOfCellInSuperview
         
         return transition

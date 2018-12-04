@@ -14,11 +14,10 @@ class StaticTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.canCancelContentTouches = true
+        self.tableView.tableFooterView = UIView(frame: .zero)
     }
 }
 

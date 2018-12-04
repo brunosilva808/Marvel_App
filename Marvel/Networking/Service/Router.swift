@@ -35,6 +35,7 @@ class Router<Endpoint: EndpointType>: NetworkRouter {
         request.httpMethod = HTTPMethod.get.rawValue
         self.addURLQueryItems(request: &request, page: 0)
     
+        print(request.url?.absoluteString ?? "")
         let session = URLSession.shared
         task = session.dataTask(with: request, completionHandler: { (data, response, error) in
             completion(data, response, error)

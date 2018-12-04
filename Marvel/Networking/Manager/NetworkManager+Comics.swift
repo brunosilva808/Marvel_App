@@ -9,7 +9,7 @@ import Foundation
 
 extension NetworkManager {
     
-    func getResourceUri(urlString: String, onSuccess: @escaping ResponseCallback<Comic>, onError: @escaping APIErrorCallback, onFinally: @escaping SimpleCallback) {
+    func getResourceUri(urlString: String, onSuccess: @escaping ResponseCallback<Character>, onError: @escaping APIErrorCallback, onFinally: @escaping SimpleCallback) {
 
         router.request(urlString: urlString) { (data, response, error) in
             if error != nil {
@@ -23,11 +23,11 @@ extension NetworkManager {
                 case .success:
                     guard let data = data else { return }
                     
-//                                let string1 = String(data: data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
-//                                print(string1)
+//                    let string1 = String(data: data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
+//                    print("\(urlString) \(string1)")
                     
                     do {
-                        let characters = try JSONDecoder().decode(Comic.self, from: data)
+                        let characters = try JSONDecoder().decode(Character.self, from: data)
                         onSuccess(characters)
                     } catch let jsonError {
                         onError(jsonError.localizedDescription)

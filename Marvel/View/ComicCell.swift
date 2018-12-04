@@ -9,7 +9,7 @@ import UIKit
 
 class ComicCell: UICollectionViewCell, ModelPresenterCell {
 
-    var model: Result1?  {
+    var model: Result?  {
         didSet {
             guard let model = self.model else { return }
             
