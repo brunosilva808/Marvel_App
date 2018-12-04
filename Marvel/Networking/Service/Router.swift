@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Router<Endpoint: EndpointType>: NetworkRouter {
+class Router<Endpoint: HTTPEndpoint>: NetworkRouter {
     private var task: URLSessionTask?
     private var timeStamp: String {
         return APIConstant.Parameter.timeStamp + APIConstant.Value.timeStamp
