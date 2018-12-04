@@ -21,6 +21,7 @@ struct DataClass: Codable {
 struct Result: Codable {
     let id: Int
     let name: String
+    let title: String?
     let description: String
     let thumbnail: Thumbnail
     let comics, series, events: Comics

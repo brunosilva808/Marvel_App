@@ -25,6 +25,23 @@ class Router<Endpoint: EndpointType>: NetworkRouter {
         return "\(digest.utf8.md5)"
     }
     
+    func request(urlString: String, completion: @escaping NetworkRouterCompletion) {
+        guard let url = URL(string: urlString) else { return }
+        
+        var request = URLRequest(url: url,
+                                 cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
+                                 timeoutInterval: APIConstant.Value.timeoutInterval)
+        
+        request.httpMethod = HTTPMethod.get.rawValue
+        self.addURLQueryItems(request: &request, page: 0)
+    
+        let session = URLSession.shared
+        task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+            completion(data, response, error)
+        })
+        task?.resume()
+    }
+    
     func request(_ route: Endpoint, page: Int, completion: @escaping NetworkRouterCompletion) {
         let session = URLSession.shared
         do {
@@ -80,7 +97,7 @@ class Router<Endpoint: EndpointType>: NetworkRouter {
         }
     }
     
-    fileprivate func addURLQueryItems(request: inout URLRequest, page: Int) {
+    func addURLQueryItems(request: inout URLRequest, page: Int) {
         let queryItems = [URLQueryItem(name: APIConstant.Parameter.timeStamp, value: APIConstant.Value.timeStamp),
                           URLQueryItem(name: APIConstant.Parameter.apiKey, value: APIConstant.Value.publicKey),
                           URLQueryItem(name: APIConstant.Parameter.hash, value: md5Digest),

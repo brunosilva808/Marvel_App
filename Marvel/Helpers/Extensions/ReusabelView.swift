@@ -2,7 +2,7 @@
 //  ReusableView.swift
 //
 //  Created by Bruno Silva on 09/02/2018.
-//  Copyright © 2018 Carbon by Bold. All rights reserved.
+//  Copyright © 2018 Bruno Silva by Bold. All rights reserved.
 //
 
 import UIKit

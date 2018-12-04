@@ -2,7 +2,7 @@
 //  Utils.swift
 //  Marvel
 //
-//  Created by Carbon on 03/12/2018.
+//  Created by Bruno Silva on 03/12/2018.
 //
 
 import Foundation
