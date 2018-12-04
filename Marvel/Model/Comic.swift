@@ -22,7 +22,7 @@ struct DataClass1: Codable {
 struct Result1: Codable {
 //    let id, digitalID: Int
     let title: String
-//    let issueNumber: Int
+    let issueNumber: Int
 //    let variantDescription: VariantDescription
 //    let description: String?
 //    let modified, isbn, upc, diamondCode: String

@@ -15,9 +15,13 @@ class ComicCell: UICollectionViewCell, ModelPresenterCell {
             
             let urlString = Service.shared.getImageUrl(thumbnail: model.thumbnail, size: APIConstant.Portrait.medium)
             self.coverImageView.loadImageUsingUrlString(urlString: urlString)
+            self.titleLabel.text = model.title
+            self.issueNumberLabel.text = "Issue number #\(model.issueNumber)"
         }
     }
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var issueNumberLabel: UILabel!
     @IBOutlet weak var coverImageView: UIImageView! {
         didSet {
             self.coverImageView.contentMode = .scaleAspectFill
