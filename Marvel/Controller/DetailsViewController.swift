@@ -7,10 +7,6 @@
 
 import UIKit
 
-//protocol DetailsViewDelegate {
-//    func favouriteCharacterButtonPressed()
-//}
-
 class DetailsViewController: StaticTableController {
     
     var delegate: FavouriteCharacterDelegate?

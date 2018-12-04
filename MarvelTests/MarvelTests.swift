@@ -29,5 +29,18 @@ class MarvelTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testServiceGet() {
+        XCTAssertNotNil(NetworkManager().getData(endpoint: .characters, page: 0, onSuccess: { (response) in
+        }, onError: { (error) in
+        }, onFinally: {
+        }))
+    }
+    
+    func testServiceGetURI() {
+        let urlsString = "http://gateway.marvel.com/v1/public/characters/1017100/comics"
+        
+        XCTAssertNotNil(NetworkManager().getResourceUri(urlString: urlsString, onSuccess: { (response) in }, onError: { (error) in}) {})
+    }
 
 }
