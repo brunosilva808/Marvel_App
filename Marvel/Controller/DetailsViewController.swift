@@ -39,60 +39,68 @@ class DetailsViewController: StaticTableController {
         self.cellContainer4.set(title: "Series")
         self.dataSource.append(self.cellCharacter)
         
-        NetworkManager().getResourceUri(urlString: result.comics.collectionURI, onSuccess: { [weak self] (response) in
-            if response.data.results.count > 0 {
-                self?.cellContainer1.model = response.data.results
-                if let cell = self?.cellContainer1 {
-                    self?.dataSource.append(cell)
+        if let url = result.comics?.collectionURI {
+            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
+                if response.data.results.count > 0 {
+                    self?.cellContainer1.model = response.data.results
+                    if let cell = self?.cellContainer1 {
+                        self?.dataSource.append(cell)
+                    }
                 }
-            }
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-        }, onError: { (error) in
-            print(error)
-        }) {}
-        
-        NetworkManager().getResourceUri(urlString: result.events.collectionURI, onSuccess: { [weak self] (response) in
-            if response.data.results.count > 0 {
-                self?.cellContainer2.model = response.data.results
-                if let cell = self?.cellContainer2 {
-                    self?.dataSource.append(cell)
-                }            }
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.reloadData()
+                }
             }, onError: { (error) in
                 print(error)
-        }) {}
+            }) {}
+        }
         
-        NetworkManager().getResourceUri(urlString: result.stories.collectionURI, onSuccess: { [weak self] (response) in
-            if response.data.results.count > 0 {
-                self?.cellContainer3.model = response.data.results
-                if let cell = self?.cellContainer3 {
-                    self?.dataSource.append(cell)
+        if let url = result.events?.collectionURI {
+            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
+                if response.data.results.count > 0 {
+                    self?.cellContainer2.model = response.data.results
+                    if let cell = self?.cellContainer2 {
+                        self?.dataSource.append(cell)
+                    }            }
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.reloadData()
                 }
-            }
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-            }, onError: { (error) in
-                print(error)
-        }) {}
+                }, onError: { (error) in
+                    print(error)
+            }) {}
+        }
         
-        NetworkManager().getResourceUri(urlString: result.series.collectionURI, onSuccess: { [weak self] (response) in
-            if response.data.results.count > 0 {
-                self?.cellContainer4.model = response.data.results
-                if let cell = self?.cellContainer4 {
-                    self?.dataSource.append(cell)
+        if let url = result.stories?.collectionURI {
+            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
+                if response.data.results.count > 0 {
+                    self?.cellContainer3.model = response.data.results
+                    if let cell = self?.cellContainer3 {
+                        self?.dataSource.append(cell)
+                    }
                 }
-            }
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-            }, onError: { (error) in
-                print(error)
-        }) {}
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.reloadData()
+                }
+                }, onError: { (error) in
+                    print(error)
+            }) {}
+        }
+
+        if let url = result.series?.collectionURI {
+            NetworkManager().getResourceUri(urlString: url, onSuccess: { [weak self] (response) in
+                if response.data.results.count > 0 {
+                    self?.cellContainer4.model = response.data.results
+                    if let cell = self?.cellContainer4 {
+                        self?.dataSource.append(cell)
+                    }
+                }
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.reloadData()
+                }
+                }, onError: { (error) in
+                    print(error)
+            }) {}
+        }
     }
  
     @objc func handleTap() {

@@ -23,8 +23,8 @@ extension NetworkManager {
                 case .success:
                     guard let data = data else { return }
                     
-                    let string1 = String(data: data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
-                    print("\(urlString) \(string1)")
+//                    let string1 = String(data: data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
+//                    print("\(urlString) \(string1)")
                     
                     do {
                         let characters = try JSONDecoder().decode(Character.self, from: data)

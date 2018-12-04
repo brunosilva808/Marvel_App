@@ -20,12 +20,12 @@ struct DataClass: Codable {
 
 struct Result: Codable {
     let id: Int
-    let name: String
+    let name: String?
     let title: String?
-    let description: String
+//    let description: String
     let issueNumber: Int = 0
     let thumbnail: Thumbnail
-    let comics, series, events, stories: Comics
+    let comics, series, events, stories: Comics?
 }
 
 struct Thumbnail: Codable {

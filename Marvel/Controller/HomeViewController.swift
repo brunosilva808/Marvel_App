@@ -36,6 +36,7 @@ class HomeViewController: UITableViewController {
     func setupTableView() {
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.registerNib(for: CharacterCell.self)
         
         let spinner = UIActivityIndicatorView(style: .gray)
@@ -90,7 +91,11 @@ extension HomeViewController {
     
     private func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         self.filterCharacters = characters.filter({( result : Result) -> Bool in
-            return result.name.lowercased().contains(searchText.lowercased())
+            if let name = result.name {
+                return name.lowercased().contains(searchText.lowercased())
+            } else {
+                return false
+            }
         })
         
         self.tableView.reloadData()
