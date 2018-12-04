@@ -27,6 +27,9 @@ class DetailsViewController: StaticTableController {
         self.tableView.registerNib(for: CharacterCell.self)
         self.tableView.registerNib(for: ContainerCell.self)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+        self.view.addGestureRecognizer(tap)
+        
         self.cellCharacter.model = self.result
         self.cellCharacter.delegate = self
         self.cellContainer1.set(title: "Comics")
@@ -75,7 +78,10 @@ class DetailsViewController: StaticTableController {
                 print(error)
         }) {}
     }
-    
+ 
+    @objc func handleTap() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension DetailsViewController: CharacterCellDelegate {

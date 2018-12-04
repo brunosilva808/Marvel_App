@@ -13,6 +13,8 @@ class HomeViewController: UITableViewController {
 
     private var searchController = UISearchController(searchResultsController: nil)
     
+    private let transition = PopAnimator()
+    private var indexPath: IndexPath!
     private var characters = [Result]()
     private var filterCharacters = [Result]()
     private var page = 0
@@ -58,8 +60,9 @@ class HomeViewController: UITableViewController {
         
         let detailsViewController = DetailsViewController()
         detailsViewController.result = result
+        detailsViewController.transitioningDelegate = self
         detailsViewController.delegate = self
-        self.navigationController?.pushViewController(detailsViewController, animated: true)
+        present(detailsViewController, animated: true, completion: nil)
     }
     
     func getCharacters() {
@@ -138,6 +141,7 @@ extension HomeViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.indexPath = indexPath
         self.showDetailsViewController(indexPath: indexPath)
     }
     
@@ -154,4 +158,26 @@ extension HomeViewController: CharacterCellDelegate, DetailsViewDelegate {
     func favouriteCharacterButtonPressed() {
         self.tableView.reloadData()
     }
+}
+
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        transition.presenting = true
+        
+        let rectOfCellInTableView = tableView.rectForRow(at: self.indexPath)
+        let rectOfCellInSuperview = tableView.convert(rectOfCellInTableView, to: tableView.superview)
+        
+        transition.originFrame = rectOfCellInSuperview
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
+        
+    }
+    
 }

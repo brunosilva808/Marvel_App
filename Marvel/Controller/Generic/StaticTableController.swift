@@ -18,6 +18,7 @@ class StaticTableController: UITableViewController {
         self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.canCancelContentTouches = true
     }
 }
 
